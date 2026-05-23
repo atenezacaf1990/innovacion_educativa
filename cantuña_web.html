@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Leyenda de Cantuña — Aventura Educativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cp:#533A71;--cpd:#3a2850;--cplight:#e8e0f8;
+  --cb:#8184DB;--cbl:#eeeeff;
+  --ct:#50C5B7;--ctd:#35a095;--ctlight:#e0faf7;
+  --cm:#9CECB5;
+  --cl:#F0F465;
+  --white:#ffffff;
+  --bg:#f7f5ff;
+  --txt:#1a1035;--txt2:#3a2850;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--cpd) 0%,var(--cp) 50%,#6b5ab0 100%);
+  padding:0;position:relative;overflow:hidden;min-height:340px;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-stars{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.star{position:absolute;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+.hero-content{position:relative;z-index:2;text-align:center;padding:2.5rem 1.5rem}
+.hero-emoji{font-size:60px;display:block;margin-bottom:12px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(28px,5vw,52px);color:var(--cl);line-height:1.1;margin-bottom:10px;text-shadow:0 3px 12px rgba(0,0,0,.3)}
+.hero-sub{font-size:clamp(14px,2vw,18px);color:var(--cm);font-weight:700;margin-bottom:18px}
+.hero-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;backdrop-filter:blur(4px)}
+
+/* ── NAV PILLS ── */
+.nav-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:1.5rem 1rem;background:#fff;border-bottom:2px solid var(--cplight);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(83,58,113,.1)}
+.nav-pill{background:var(--cplight);color:var(--cp);font-size:13px;font-weight:800;padding:8px 18px;border-radius:30px;text-decoration:none;border:2px solid transparent;transition:all .2s;cursor:pointer}
+.nav-pill:hover,.nav-pill.active{background:var(--cp);color:var(--cl);border-color:var(--cpd)}
+
+/* ── LAYOUT ── */
+.container{max-width:900px;margin:0 auto;padding:0 1.25rem}
+section{padding:3rem 0}
+
+/* ── SECTION HEADERS ── */
+.sec-header{text-align:center;margin-bottom:2rem}
+.sec-tag{display:inline-block;background:var(--cl);color:var(--cpd);font-family:'Fredoka One',cursive;font-size:13px;padding:4px 16px;border-radius:20px;margin-bottom:10px;letter-spacing:.5px}
+.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(22px,4vw,34px);color:var(--cp);margin-bottom:8px;line-height:1.2}
+.sec-desc{font-size:15px;color:var(--txt2);font-weight:600;max-width:560px;margin:0 auto;line-height:1.7}
+
+/* ── ACTIVITY CARDS ── */
+.activities-grid{display:flex;flex-direction:column;gap:2.5rem}
+.act-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(83,58,113,.12);border:2px solid var(--cplight);transition:transform .2s,box-shadow .2s}
+.act-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(83,58,113,.18)}
+.act-header{padding:1.1rem 1.4rem;display:flex;align-items:center;gap:12px}
+.act-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.act-icon.purple{background:var(--cp);color:var(--cl)}
+.act-icon.blue{background:var(--cb);color:#fff}
+.act-icon.teal{background:var(--ct);color:#0d3830}
+.act-icon.mint{background:var(--cm);color:#0d3830}
+.act-icon.lime{background:var(--cl);color:var(--cpd)}
+.act-meta{flex:1}
+.act-num{font-size:11px;font-weight:800;color:var(--cb);text-transform:uppercase;letter-spacing:.8px}
+.act-title{font-family:'Fredoka One',cursive;font-size:18px;color:var(--cp);margin-top:2px;line-height:1.2}
+.act-desc{font-size:13px;color:var(--txt2);font-weight:600;margin-top:2px}
+.act-badge{background:var(--cl);color:var(--cpd);font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.iframe-wrap{padding:0 1.4rem 1.4rem;position:relative}
+.iframe-container{border-radius:14px;overflow:hidden;border:2px solid var(--cplight);background:#f5f4ff;position:relative}
+.iframe-container iframe{display:block;width:100%;min-height:480px;border:none}
+
+/* ── SECTION DIVIDERS ── */
+.divider{display:flex;align-items:center;gap:12px;margin:0 auto 2rem;max-width:400px}
+.divider-line{flex:1;height:2px;background:linear-gradient(to right,transparent,var(--cb),transparent);border-radius:2px}
+.divider-icon{font-size:20px}
+
+/* ── CONTEXT BOX ── */
+.context-box{background:linear-gradient(135deg,var(--cp),var(--cb));border-radius:20px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:flex-start;gap:14px;box-shadow:0 4px 20px rgba(83,58,113,.25)}
+.context-box-icon{font-size:32px;flex-shrink:0;margin-top:2px}
+.context-box h3{font-family:'Fredoka One',cursive;font-size:18px;color:var(--cl);margin-bottom:6px}
+.context-box p{font-size:14px;color:#e0d8ff;font-weight:600;line-height:1.7}
+
+/* ── GAME SECTION ── */
+.game-section{background:linear-gradient(135deg,var(--cpd) 0%,#4a3580 100%);padding:3rem 0;position:relative;overflow:hidden}
+.game-section::before{content:'';position:absolute;top:-40px;left:0;right:0;height:80px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 0%)}
+.game-section::after{content:'';position:absolute;bottom:-40px;left:0;right:0;height:80px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 100%)}
+.game-inner{position:relative;z-index:2}
+.game-header{text-align:center;margin-bottom:2rem}
+.game-title{font-family:'Fredoka One',cursive;font-size:clamp(24px,4vw,38px);color:var(--cl);margin-bottom:8px}
+.game-sub{font-size:15px;color:var(--cm);font-weight:700}
+.game-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.3);border:3px solid var(--cl);margin:0 auto;max-width:820px}
+
+/* ── FOOTER ── */
+footer{background:var(--cpd);padding:2rem 1rem;text-align:center}
+footer p{color:#b8a8d8;font-size:13px;font-weight:600;line-height:1.8}
+footer strong{color:var(--cl)}
+
+/* ── FUN ELEMENTS ── */
+.fun-banner{background:var(--cl);padding:.6rem;text-align:center;overflow:hidden}
+.fun-banner p{font-family:'Fredoka One',cursive;font-size:14px;color:var(--cpd);white-space:nowrap;animation:marquee 20s linear infinite}
+@keyframes marquee{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)} }
+
+.progress-tracker{display:flex;justify-content:center;gap:0;margin-bottom:2.5rem;position:relative}
+.progress-tracker::before{content:'';position:absolute;top:20px;left:10%;right:10%;height:3px;background:var(--cplight);z-index:0}
+.pt-step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:100px;position:relative;z-index:1}
+.pt-dot{width:42px;height:42px;border-radius:50%;border:3px solid var(--cplight);background:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--cp);transition:all .3s;cursor:default}
+.pt-dot.done{background:var(--ct);border-color:var(--ctd);color:#fff}
+.pt-dot.current{background:var(--cp);border-color:var(--cpd);color:var(--cl);box-shadow:0 0 0 4px rgba(83,58,113,.2)}
+.pt-label{font-size:10px;font-weight:800;color:var(--txt2);text-align:center;line-height:1.3}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .act-header{flex-wrap:wrap}
+  .act-badge{width:100%;text-align:center}
+  .iframe-container iframe{min-height:360px}
+  .nav-pills{gap:5px}
+  .nav-pill{font-size:11px;padding:6px 12px}
+  .context-box{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+<body>
+
+<!-- FUN BANNER -->
+<div class="fun-banner">
+  <p>&#127775; ¡Bienvenido a la aventura de Cantuña! &#127963; Lee, piensa, juega y aprende &#128218; ¡Tú puedes ser un Guardián de la Memoria! &#127775; ¡Bienvenido a la aventura de Cantuña! &#127963; Lee, piensa, juega y aprende &#128218; ¡Tú puedes ser un Guardián de la Memoria!</p>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stars" id="hero-stars"></div>
+  <div class="hero-content">
+    <span class="hero-emoji">&#127963;</span>
+    <h1>La Leyenda de Cantuña</h1>
+    <p class="hero-sub">&#128218; Aventura educativa de comprensión lectora</p>
+    <div class="hero-chips">
+      <span class="chip">&#128100; 4to EGB</span>
+      <span class="chip">&#128218; Lengua y Literatura</span>
+      <span class="chip">&#127466;&#127464; Ecuador</span>
+      <span class="chip">&#127775; Gamificación</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="nav-pills">
+  <a class="nav-pill" href="#pensamiento">&#129504; Pensamiento crítico</a>
+  <a class="nav-pill" href="#personajes">&#127937; Los personajes</a>
+  <a class="nav-pill" href="#juego">&#127918; Escape Room</a>
+</nav>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECCIÓN 1 — PENSAMIENTO CRÍTICO -->
+<!-- ══════════════════════════════════════ -->
+<section id="pensamiento">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag">&#129504; Misión 1</div>
+      <h2 class="sec-title">Desarrollo del Pensamiento Crítico</h2>
+      <p class="sec-desc">Explora la leyenda, analiza sus ideas y responde a los retos de comprensión. ¡Lee con atención antes de responder!</p>
+    </div>
+
+    <!-- Progress tracker -->
+    <div class="progress-tracker">
+      <div class="pt-step">
+        <div class="pt-dot current">1</div>
+        <div class="pt-label">Actividad 1</div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-dot">2</div>
+        <div class="pt-label">Actividad 2</div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-dot">3</div>
+        <div class="pt-label">Actividad 3</div>
+      </div>
+    </div>
+
+    <div class="activities-grid">
+
+      <!-- ACTIVIDAD 1 -->
+      <div class="act-card">
+        <div class="act-header">
+          <div class="act-icon purple">&#129504;</div>
+          <div class="act-meta">
+            <div class="act-num">Actividad 1</div>
+            <div class="act-title">¿Qué sabes de la leyenda?</div>
+            <div class="act-desc">Explora y reflexiona sobre la historia de Cantuña</div>
+          </div>
+          <span class="act-badge">&#127775; Nivel 1</span>
+        </div>
+        <div class="iframe-wrap">
+          <div class="iframe-container">
+            <iframe src="https://app.lumi.education/api/v1/run/G74cz1/embed"
+              width="100%" height="520" frameborder="0"
+              allowfullscreen="allowfullscreen"
+              allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVIDAD 2 -->
+      <div class="act-card">
+        <div class="act-header">
+          <div class="act-icon blue">&#128270;</div>
+          <div class="act-meta">
+            <div class="act-num">Actividad 2</div>
+            <div class="act-title">Analizando la historia</div>
+            <div class="act-desc">Profundiza en los detalles y el mensaje de la leyenda</div>
+          </div>
+          <span class="act-badge">&#127775; Nivel 2</span>
+        </div>
+        <div class="iframe-wrap">
+          <div class="iframe-container">
+            <iframe src="https://app.lumi.education/api/v1/run/DRf28I/embed"
+              width="100%" height="520" frameborder="0"
+              allowfullscreen="allowfullscreen"
+              allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVIDAD 3 -->
+      <div class="act-card">
+        <div class="act-header">
+          <div class="act-icon teal">&#128161;</div>
+          <div class="act-meta">
+            <div class="act-num">Actividad 3</div>
+            <div class="act-title">Pensando como Cantuña</div>
+            <div class="act-desc">¿Qué harías tú en su lugar? Desarrolla tu pensamiento crítico</div>
+          </div>
+          <span class="act-badge">&#127775; Nivel 3</span>
+        </div>
+        <div class="iframe-wrap">
+          <div class="iframe-container">
+            <iframe src="https://app.lumi.education/api/v1/run/q67lBx/embed"
+              width="100%" height="520" frameborder="0"
+              allowfullscreen="allowfullscreen"
+              allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECCIÓN 2 — PERSONAJES -->
+<!-- ══════════════════════════════════════ -->
+<section id="personajes" style="background:linear-gradient(180deg,var(--bg) 0%,var(--ctlight) 100%)">
+  <div class="container">
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-icon">&#127937;</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="sec-header">
+      <div class="sec-tag">&#127937; Misión 2</div>
+      <h2 class="sec-title">¡Recuerda a los Personajes!</h2>
+      <p class="sec-desc">Cada personaje de la leyenda tiene una historia especial. ¿Los recuerdas todos? ¡Demuéstralo con estas actividades!</p>
+    </div>
+
+    <!-- Context box -->
+    <div class="context-box">
+      <div class="context-box-icon">&#128172;</div>
+      <div>
+        <h3>&#128161; ¿Sabías esto?</h3>
+        <p>La leyenda de Cantuña tiene personajes muy interesantes: el valiente constructor indígena Cantuña, el astuto Diablo que quería su alma, los exigentes frailes franciscanos y los veloces diablillos constructores. ¡Cada uno juega un rol muy importante en la historia!</p>
+      </div>
+    </div>
+
+    <div class="activities-grid">
+
+      <!-- ACTIVIDAD 4 -->
+      <div class="act-card">
+        <div class="act-header">
+          <div class="act-icon mint">&#128100;</div>
+          <div class="act-meta">
+            <div class="act-num">Actividad 4</div>
+            <div class="act-title">¿Quién es quién?</div>
+            <div class="act-desc">Identifica y relaciona cada personaje con sus características</div>
+          </div>
+          <span class="act-badge">&#127775; Personajes</span>
+        </div>
+        <div class="iframe-wrap">
+          <div class="iframe-container">
+            <iframe src="https://app.lumi.education/api/v1/run/pz-ES3/embed"
+              width="100%" height="520" frameborder="0"
+              allowfullscreen="allowfullscreen"
+              allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVIDAD 5 -->
+      <div class="act-card">
+        <div class="act-header">
+          <div class="act-icon lime">&#127775;</div>
+          <div class="act-meta">
+            <div class="act-num">Actividad 5</div>
+            <div class="act-title">Características de los personajes</div>
+            <div class="act-desc">¿Cómo son? ¿Qué hacen? ¡Demuestra que los conoces bien!</div>
+          </div>
+          <span class="act-badge">&#127775; Personajes</span>
+        </div>
+        <div class="iframe-wrap">
+          <div class="iframe-container">
+            <iframe src="https://app.lumi.education/api/v1/run/r0i-LL/embed"
+              width="100%" height="520" frameborder="0"
+              allowfullscreen="allowfullscreen"
+              allow="geolocation *; microphone *; camera *; midi *; encrypted-media *"
+              loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SECCIÓN 3 — ESCAPE ROOM -->
+<!-- ══════════════════════════════════════ -->
+<div class="game-section" id="juego">
+  <div class="container game-inner">
+    <div class="game-header">
+      <div class="sec-tag" style="background:var(--cm);color:#0d3830">&#127918; Misión Final</div>
+      <h2 class="game-title">&#127274; ¡El Gran Escape Room!</h2>
+      <p class="game-sub">¿Recuerdas todo sobre Cantuña? ¡Ahora es tu momento de brillar! Supera los 4 niveles y salva el alma de Cantuña.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px">
+        <span style="background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;border:2px solid rgba(255,255,255,.3)">&#128273; 4 llaves mágicas</span>
+        <span style="background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;border:2px solid rgba(255,255,255,.3)">&#127942; 4 misiones</span>
+        <span style="background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;border:2px solid rgba(255,255,255,.3)">&#11088; Diploma final</span>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <!-- ===== ESCAPE ROOM INCRUSTADO ===== -->
+      <style>
+        .er-in *{box-sizing:border-box;margin:0;padding:0}
+        .er-in{font-family:'Nunito',sans-serif;background:#f7f5ff;color:#1a1035;padding:1.25rem}
+        .er-in .er-header{background:#533A71;border-radius:14px;padding:1rem 1.25rem;margin-bottom:1rem;text-align:center}
+        .er-in .er-header h1{color:#F0F465;font-family:'Fredoka One',cursive;font-size:20px}
+        .er-in .er-header p{color:#9CECB5;font-size:12px;margin-top:4px;font-weight:600}
+        .er-in .pb{display:flex;gap:5px;margin-bottom:1rem}
+        .er-in .ps{flex:1;padding:6px 3px;border-radius:7px;border:2px solid #d0cce8;text-align:center;font-size:10px;font-weight:800;background:#fff;color:#6a5f88;transition:all .3s}
+        .er-in .ps.active{background:#8184DB;border-color:#5f62b5;color:#fff}
+        .er-in .ps.done{background:#50C5B7;border-color:#35a095;color:#fff}
+        .er-in .sc{display:none}
+        .er-in .sc.visible{display:block}
+        .er-in .card{background:#fff;border:2px solid #d8d4f0;border-radius:12px;padding:1rem;margin-bottom:.9rem}
+        .er-in .card-purple{background:#533A71;border-color:#3a2850}
+        .er-in .card-blue{background:#eeeeff;border-color:#b0b2f0}
+        .er-in .card-mint{background:#e8fef0;border-color:#9CECB5}
+        .er-in .lbadge{display:inline-block;background:#533A71;color:#F0F465;font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;margin-bottom:7px}
+        .er-in .fbadge{display:inline-block;background:#50C5B7;color:#0d3830;font-size:10px;font-weight:800;padding:2px 10px;border-radius:20px;margin-bottom:7px;margin-left:4px}
+        .er-in h2{font-family:'Fredoka One',cursive;font-size:16px;color:#1a1035;margin-bottom:.4rem}
+        .er-in .stxt{font-size:13px;line-height:1.75;color:#1a1035;border-left:3px solid #8184DB;padding:9px 10px 9px 13px;margin:9px 0;background:#f5f4ff;border-radius:0 9px 9px 0}
+        .er-in .chtit{font-size:12px;font-weight:800;color:#3a2850;background:#F0F465;padding:5px 12px;border-radius:7px;margin:10px 0 7px;display:inline-block}
+        .er-in .hint{font-size:11px;color:#3a2850;margin:5px 0 9px;padding:6px 10px;background:#f0eeff;border-radius:7px;border-left:3px solid #8184DB;font-weight:700}
+        .er-in .q{font-size:13px;color:#1a1035;margin-bottom:9px;font-weight:800;line-height:1.5}
+        .er-in .opt{display:block;width:100%;text-align:left;padding:11px 14px;margin-bottom:7px;background:#fff;border:2px solid #9993cc;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;color:#1a1035;transition:all .15s}
+        .er-in .opt:hover:not([disabled]){background:#eeeeff;border-color:#8184DB}
+        .er-in .opt.correct{background:#e8fef0!important;border-color:#50C5B7!important;color:#0d3830!important}
+        .er-in .opt.wrong{background:#fff0f0!important;border-color:#d05050!important;color:#6a0000!important}
+        .er-in .opt[disabled]{cursor:default}
+        .er-in .fb{font-size:12px;padding:9px 12px;border-radius:9px;margin:7px 0;line-height:1.6;font-weight:700}
+        .er-in .fb.ok{background:#e8fef0;color:#0d3830;border:2px solid #50C5B7}
+        .er-in .fb.fail{background:#fff0f0;color:#6a0000;border:2px solid #d05050}
+        .er-in .krev{background:#533A71;color:#F0F465;font-size:18px;font-weight:800;letter-spacing:5px;text-align:center;padding:12px;border-radius:11px;margin:9px 0;font-family:'Fredoka One',cursive}
+        .er-in .btnst{background:#50C5B7;color:#0d3830;border:none;padding:13px 20px;border-radius:11px;font-size:15px;cursor:pointer;font-weight:800;width:100%;margin-top:4px;font-family:'Nunito',sans-serif}
+        .er-in .btnst:hover{background:#35a095;color:#fff}
+        .er-in .btnn{background:#533A71;color:#F0F465;border:none;padding:11px 20px;border-radius:9px;font-size:13px;cursor:pointer;font-weight:800;margin-top:9px;width:100%;font-family:'Nunito',sans-serif}
+        .er-in .btnn:hover{background:#3a2850}
+        .er-in .btnv{background:#8184DB;color:#fff;border:none;padding:10px 20px;border-radius:9px;font-size:13px;cursor:pointer;font-weight:800;margin-top:7px;width:100%;font-family:'Nunito',sans-serif}
+        .er-in .btnv:hover{background:#5f62b5}
+        .er-in .btnr{background:#50C5B7;color:#0d3830;border:none;padding:11px 20px;border-radius:9px;font-size:13px;cursor:pointer;font-weight:800;margin-top:4px;width:100%;font-family:'Nunito',sans-serif}
+        .er-in .btnr:hover{background:#35a095;color:#fff}
+        .er-in .cwrap{display:none;margin-bottom:.9rem}
+        .er-in .cd{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:4px 0}
+        .er-in .cn{display:inline-flex;align-items:center;gap:4px;background:#533A71;color:#F0F465;font-size:11px;font-weight:800;padding:3px 9px;border-radius:18px}
+        .er-in .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:7px 0}
+        .er-in .mct{font-size:10px;font-weight:800;color:#3a2850;text-align:center;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+        .er-in .mi{padding:9px 8px;border-radius:9px;border:2px solid #9993cc;font-size:12px;font-weight:700;text-align:center;background:#fff;cursor:pointer;color:#1a1035;transition:all .15s;line-height:1.4}
+        .er-in .mi:hover{background:#eeeeff;border-color:#8184DB}
+        .er-in .mi.selected{background:#8184DB;border-color:#5f62b5;color:#fff}
+        .er-in .mi.matched-ok{background:#9CECB5;border-color:#50C5B7;color:#0d3830;cursor:default}
+        .er-in .si{padding:9px 11px;border-radius:9px;border:2px solid #9993cc;font-size:12px;font-weight:700;margin-bottom:5px;background:#fff;color:#1a1035;display:flex;align-items:center;justify-content:space-between;gap:7px}
+        .er-in .sn{font-weight:800;color:#8184DB;min-width:18px;font-size:14px}
+        .er-in .st{flex:1;font-size:12px;line-height:1.5;color:#1a1035;font-weight:700}
+        .er-in .sb{display:flex;gap:3px}
+        .er-in .sbtn{background:#eeeeff;border:2px solid #b0b2f0;border-radius:5px;padding:3px 8px;cursor:pointer;font-size:11px;color:#3a2850;font-weight:800}
+        .er-in .sbtn:hover{background:#8184DB;color:#fff;border-color:#8184DB}
+        .er-in .isteps{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin:10px 0}
+        .er-in .istep{background:#f5f4ff;border:2px solid #d0cce8;border-radius:9px;padding:9px;text-align:center}
+        .er-in .snum{width:26px;height:26px;background:#533A71;color:#F0F465;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;margin:0 auto 5px}
+        .er-in .istep p{font-size:11px;color:#3a2850;line-height:1.4;font-weight:700}
+        .er-in .slabel{font-size:10px;font-weight:800;color:#533A71;text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px}
+        .er-in .fstars{font-size:26px;text-align:center;letter-spacing:3px;margin:9px 0;color:#50C5B7}
+        .er-in .fmsg{font-size:13px;text-align:center;color:#3a2850;line-height:1.75;margin:7px 0;font-weight:700}
+        .er-in .ttag{display:inline-block;background:#8184DB;color:#fff;font-size:10px;font-weight:800;padding:2px 9px;border-radius:18px;margin:2px}
+      </style>
+
+      <div class="er-in">
+        <div class="er-header">
+          <h1>&#127963; La Leyenda de Cantuña</h1>
+          <p>Escape Room &middot; Comprensión Lectora &middot; 4to EGB</p>
+        </div>
+        <div class="pb">
+          <div class="ps" id="ps0">Intro</div>
+          <div class="ps" id="ps1">Nivel 1</div>
+          <div class="ps" id="ps2">Nivel 2</div>
+          <div class="ps" id="ps3">Nivel 3</div>
+          <div class="ps" id="ps4">Nivel 4</div>
+          <div class="ps" id="ps5">Final</div>
+        </div>
+        <div class="cwrap" id="cwrap">
+          <div class="card card-blue" style="padding:.65rem .9rem">
+            <div class="slabel">Llaves obtenidas</div>
+            <div class="cd" id="cdis"></div>
+          </div>
+        </div>
+
+        <!-- INTRO -->
+        <div class="sc visible" id="gs-intro">
+          <div class="card card-purple">
+            <h2 style="color:#F0F465;text-align:center;font-size:17px">&#128274; ¡Agente, necesitamos tu ayuda!</h2>
+            <p style="color:#e0d8ff;font-size:13px;line-height:1.8;margin-top:9px;text-align:center;font-weight:600">El año es 1535. Cantuña firmó un contrato muy peligroso... ¡y ahora su alma está en peligro! Solo tú puedes salvarlo.</p>
+          </div>
+          <div class="card">
+            <div class="slabel">¿Cómo funciona?</div>
+            <div class="isteps">
+              <div class="istep"><div class="snum">1</div><p>Lee cada fragmento de la leyenda</p></div>
+              <div class="istep"><div class="snum">2</div><p>Resuelve el reto de comprensión</p></div>
+              <div class="istep"><div class="snum">3</div><p>Obtén una llave mágica</p></div>
+              <div class="istep"><div class="snum">4</div><p>¡Abre el cofre y salva a Cantuña!</p></div>
+            </div>
+          </div>
+          <button class="btnst" onclick="gGoTo('gs-l1')">&#9654; Comenzar misión</button>
+        </div>
+
+        <!-- NIVEL 1 -->
+        <div class="sc" id="gs-l1">
+          <div class="card">
+            <span class="lbadge">Nivel 1 — El compromiso</span><span class="fbadge">Comprensión literal</span>
+            <h2>¿Quién es Cantuña?</h2>
+            <div class="stxt">En la ciudad de Quito vivía un joven constructor indígena llamado <strong>Cantuña</strong>. Era muy trabajador y hábil con las piedras. Un día, los frailes franciscanos le pidieron que construyera el atrio de la iglesia de San Francisco. Cantuña aceptó muy emocionado, pero los frailes le dijeron: <em>"¡Debes terminar antes de que salga el sol! Si no... ¡serás castigado!"</em> Cantuña miró las enormes piedras y sintió que su corazón se encogía.</div>
+          </div>
+          <div class="card card-blue">
+            <div class="chtit">&#9876; Reto 1 — Preguntas relámpago</div>
+            <div class="hint">&#128065; Lee bien el texto antes de responder.</div>
+            <div id="g1-q1">
+              <p class="q">1. ¿Cómo se llama el personaje principal?</p>
+              <button class="opt" onclick="gqa(this,false,'g1-f1',null,'g1-q2')">a) Francisco</button>
+              <button class="opt" onclick="gqa(this,true,'g1-f1','¡Correcto! Cantuña es el protagonista.','g1-q2')">b) Cantuña</button>
+              <button class="opt" onclick="gqa(this,false,'g1-f1','Mira la primera oración del texto.',null)">c) Lucifer</button>
+            </div>
+            <div id="g1-f1" style="display:none"></div>
+            <div id="g1-q2" style="display:none;margin-top:11px">
+              <p class="q">2. ¿Qué le pidieron los frailes a Cantuña?</p>
+              <button class="opt" onclick="gqa(this,false,'g1-f2',null,'g1-q3')">a) Que pintara la iglesia</button>
+              <button class="opt" onclick="gqa(this,true,'g1-f2','¡Muy bien! Construir el atrio de San Francisco.','g1-q3')">b) Que construyera el atrio de la iglesia</button>
+              <button class="opt" onclick="gqa(this,false,'g1-f2','Vuelve al texto: ¿qué le pidieron?',null)">c) Que cocinara para la fiesta</button>
+            </div>
+            <div id="g1-f2" style="display:none"></div>
+            <div id="g1-q3" style="display:none;margin-top:11px">
+              <p class="q">3. ¿Por qué Cantuña sintió miedo?</p>
+              <button class="opt" onclick="gqa(this,false,'g1-f3',null,'g1-key')">a) Porque no le gustaban las piedras</button>
+              <button class="opt" onclick="gqa(this,true,'g1-f3','¡Exacto! El plazo imposible lo asustó.','g1-key')">b) Porque debía terminar antes del amanecer o sería castigado</button>
+              <button class="opt" onclick="gqa(this,false,'g1-f3','Fíjate en lo que le dijeron los frailes.',null)">c) Porque la iglesia ya estaba lista</button>
+            </div>
+            <div id="g1-f3" style="display:none"></div>
+            <div id="g1-key" style="display:none">
+              <div class="krev">&#128273; PIEDRA</div>
+              <div class="fb ok">&#10003; <strong>¡Llave obtenida!</strong> Cantuña necesitaba muchas piedras.</div>
+              <button class="btnn" onclick="gUnlock('PIEDRA','gs-l2',1)">&#10132; Siguiente misión</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NIVEL 2 -->
+        <div class="sc" id="gs-l2">
+          <div class="card">
+            <span class="lbadge">Nivel 2 — El pacto de medianoche</span><span class="fbadge">Inferencial</span>
+            <h2>El visitante de la noche</h2>
+            <div class="stxt">Era medianoche. Cantuña estaba solo, agotado y desesperado. De repente, apareció una neblina roja... ¡y salió el <strong>Diablo</strong>! Pero era más bien un tramposo con cuernos pequeños y sonrisa pícara. <em>"¡Yo y mis diablillos terminaremos tu iglesia! Pero a cambio... ¡me entregas tu alma!"</em> Cantuña, sin ver otra salida, estrechó la mano del Diablo.</div>
+          </div>
+          <div class="card card-blue">
+            <div class="chtit">&#128172; Reto 2 — ¿Quién dijo qué?</div>
+            <div class="hint">&#128065; Toca una frase y luego el personaje que la dijo.</div>
+            <div class="mgrid">
+              <div>
+                <div class="mct">Frases</div>
+                <div class="mi" id="gf1" onclick="gSelF(1)">"Yo terminaré tu iglesia esta noche"</div>
+                <div class="mi" id="gf2" onclick="gSelF(2)">"¡Debo terminar antes del amanecer!"</div>
+                <div class="mi" id="gf3" onclick="gSelF(3)">"Debes entregarme tu alma"</div>
+              </div>
+              <div>
+                <div class="mct">Personaje</div>
+                <div class="mi" id="gp1" onclick="gSelP(1,'El Diablo')">El Diablo</div>
+                <div class="mi" id="gp2" onclick="gSelP(2,'Cantuña')">Cantuña</div>
+                <div class="mi" id="gp3" onclick="gSelP(3,'El Diablo')">El Diablo</div>
+              </div>
+            </div>
+            <div id="g2-fb"></div>
+            <div id="g2-inf" style="display:none;margin-top:12px">
+              <p class="q">¿Por qué Cantuña aceptó el trato?</p>
+              <button class="opt" onclick="gqa(this,false,'g2-finf',null,null)">a) Porque era su amigo</button>
+              <button class="opt" onclick="gqa(this,true,'g2-finf','¡Excelente! No veía otra salida.','g2-key')">b) Porque estaba desesperado y no veía otra solución</button>
+              <button class="opt" onclick="gqa(this,false,'g2-finf','El texto dice que estaba desesperado.',null)">c) Porque quería hacerse famoso</button>
+            </div>
+            <div id="g2-finf" style="display:none"></div>
+            <div id="g2-key" style="display:none">
+              <div class="krev">&#128273; NOCHE</div>
+              <div class="fb ok">&#10003; <strong>¡Llave obtenida!</strong> El pacto fue a medianoche.</div>
+              <button class="btnn" onclick="gUnlock('NOCHE','gs-l3',2)">&#10132; Siguiente misión</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NIVEL 3 -->
+        <div class="sc" id="gs-l3">
+          <div class="card">
+            <span class="lbadge">Nivel 3 — La última piedra</span><span class="fbadge">Atención al detalle</span>
+            <h2>El plan secreto de Cantuña</h2>
+            <div class="stxt">Los diablillos trabajaban increíblemente rápido. Pero Cantuña hizo algo muy astuto: tomó una piedra grande del montón y la escondió bien lejos. Sabía que si faltaba <strong>UNA SOLA PIEDRA</strong>, los diablillos no podrían terminar... ¡y el Diablo perdería el trato!</div>
+          </div>
+          <div class="card card-blue">
+            <div class="chtit">&#128290; Reto 3 — Ordena la secuencia</div>
+            <div class="hint">&#128065; Usa las flechas para ordenar los 5 hechos del 1 al 5.</div>
+            <div id="gseq"></div>
+            <button class="btnv" id="gseqbtn" onclick="gCheckSeq()">&#10003; Verificar orden</button>
+            <div id="g3-f" style="display:none"></div>
+            <div id="g3-key" style="display:none">
+              <div class="krev">&#128273; ASTUCIA</div>
+              <div class="fb ok">&#10003; <strong>¡Llave obtenida!</strong> La astucia de Cantuña salvó su alma.</div>
+              <button class="btnn" onclick="gUnlock('ASTUCIA','gs-l4',3)">&#10132; Última misión</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- NIVEL 4 -->
+        <div class="sc" id="gs-l4">
+          <div class="card">
+            <span class="lbadge">Nivel 4 — ¡Salvados!</span><span class="fbadge">Reflexión</span>
+            <h2>El amanecer de la victoria</h2>
+            <div class="stxt">Al amanecer, el gallo cantó. Los diablillos vieron que faltaba UNA piedra. El Diablo rugió. Cantuña sonrió y mostró la piedra escondida: <em>"¡La obra no está terminada!"</em> El Diablo, derrotado, desapareció. <strong>La inteligencia había vencido a la trampa.</strong></div>
+          </div>
+          <div class="card card-blue">
+            <div class="chtit">&#128161; Reto 4 — La moraleja</div>
+            <div class="hint">&#128065; Lee bien antes de responder.</div>
+            <div id="g4-q1">
+              <p class="q">1. ¿Cómo venció Cantuña al Diablo?</p>
+              <button class="opt" onclick="gqa(this,false,'g4-f1',null,null)">a) Peleó con sus herramientas</button>
+              <button class="opt" onclick="gqa(this,true,'g4-f1','¡Correcto! Esconder la piedra fue su plan secreto.','g4-q2')">b) Escondió una piedra para que la obra no quedara lista</button>
+              <button class="opt" onclick="gqa(this,false,'g4-f1','¿Qué hizo Cantuña en secreto con una piedra?',null)">c) Pidió ayuda a los frailes</button>
+            </div>
+            <div id="g4-f1" style="display:none"></div>
+            <div id="g4-q2" style="display:none;margin-top:11px">
+              <p class="q">2. ¿Cuál es la moraleja de la leyenda?</p>
+              <button class="opt" onclick="gqa(this,false,'g4-f2',null,null)">a) Trabajar rápido siempre te hace ganar</button>
+              <button class="opt" onclick="gqa(this,true,'g4-f2','¡Exacto! La astucia es el gran valor de la leyenda.','g4-q3')">b) La inteligencia puede vencer a los que quieren engañarnos</button>
+              <button class="opt" onclick="gqa(this,false,'g4-f2','¿Qué usó Cantuña para ganar?',null)">c) Nunca aceptes trabajos difíciles</button>
+            </div>
+            <div id="g4-f2" style="display:none"></div>
+            <div id="g4-q3" style="display:none;margin-top:11px">
+              <p class="q">3. ¿Qué palabra describe MEJOR a Cantuña?</p>
+              <button class="opt" onclick="gqa(this,false,'g4-f3',null,null)">a) Cobarde y perezoso</button>
+              <button class="opt" onclick="gqa(this,false,'g4-f3','Recuerda cómo actuó Cantuña.',null)">b) Tramposo y mentiroso</button>
+              <button class="opt" onclick="gqa(this,true,'g4-f3','¡Perfecto! Cantuña es el héroe de Quito.','g4-key')">c) Valiente, trabajador e inteligente</button>
+            </div>
+            <div id="g4-f3" style="display:none"></div>
+            <div id="g4-key" style="display:none">
+              <div class="krev">&#128273; QUITO</div>
+              <div class="fb ok">&#10003; <strong>¡Llave obtenida!</strong> La iglesia de San Francisco sigue en pie en Quito.</div>
+              <button class="btnn" onclick="gUnlock('QUITO','gs-final',4)">&#128275; ¡Abrir el cofre final!</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FINAL -->
+        <div class="sc" id="gs-final">
+          <div class="card card-purple" style="text-align:center">
+            <div style="font-size:40px;color:#F0F465;margin-bottom:7px">&#127942;</div>
+            <h2 style="color:#F0F465;font-family:'Fredoka One',cursive">¡El cofre está abierto!</h2>
+            <p style="color:#e0d8ff;font-size:12px;margin:5px 0 11px;font-weight:700">Las 4 llaves de la misión:</p>
+            <div class="cd" style="justify-content:center" id="gfcoins"></div>
+          </div>
+          <div class="card card-mint">
+            <div class="fstars">&#11088; &#11088; &#11088; &#11088;</div>
+            <p class="fmsg"><strong>¡Felicitaciones, Guardián de la Memoria!</strong><br>Gracias a tu comprensión lectora, el alma de Cantuña está a salvo. La leyenda de San Francisco vivirá para siempre en Quito... ¡y en tu corazón!</p>
+          </div>
+          <button class="btnr" onclick="gReset()">&#8635; Jugar de nuevo</button>
+        </div>
+
+      </div><!-- .er-in -->
+    </div><!-- .game-card -->
+  </div><!-- .container -->
+</div><!-- .game-section -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>&#127963; <strong>La Leyenda de Cantuña</strong> — Aventura Educativa</p>
+    <p style="margin-top:6px">Herramientas de Autor para la Gestión Innovadora de Contenidos &middot; 4to EGB &middot; Ecuador</p>
+    <p style="margin-top:6px">&#127775; ¡Sigue aprendiendo, eres un Guardián de la Memoria! &#127775;</p>
+  </div>
+</footer>
+
+<script>
+// ── STARS ──
+(function(){
+  var c=document.getElementById('hero-stars');
+  var cols=['#F0F465','#9CECB5','#50C5B7','#8184DB','#ffffff'];
+  for(var i=0;i<28;i++){
+    var s=document.createElement('div');s.className='star';
+    var sz=Math.random()*6+3;
+    s.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+cols[Math.floor(Math.random()*cols.length)]+';top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;animation-delay:'+(Math.random()*3)+'s;animation-duration:'+(Math.random()*2+2)+'s';
+    c.appendChild(s);
+  }
+})();
+
+// ── NAV ACTIVE ──
+var pills=document.querySelectorAll('.nav-pill');
+window.addEventListener('scroll',function(){
+  var secs=['pensamiento','personajes','juego'];
+  var cur='';
+  secs.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-120)cur=id;
+  });
+  pills.forEach(function(p){
+    p.classList.toggle('active',p.getAttribute('href')==='#'+cur);
+  });
+});
+
+// ── GAME LOGIC ──
+var gKeys=[],gCurF=null,gMatchAns={1:'El Diablo',2:'Cantuña',3:'El Diablo'},gMatchDone={1:false,2:false,3:false},gMatchOk=0;
+var gSeqAns=['Cantuña acepta construir el atrio de la iglesia.','Los frailes le dan un plazo muy corto.','Los diablillos construyen la iglesia de noche.','Cantuña esconde una piedra del montón.','El Diablo no termina la obra y pierde el trato.'];
+var gSeqOrder=null;
+
+function gGoTo(id){
+  document.querySelectorAll('.sc').forEach(function(s){s.classList.remove('visible')});
+  document.getElementById(id).classList.add('visible');
+  gUpdProg(id);
+}
+function gUpdProg(id){
+  var m={'gs-intro':0,'gs-l1':1,'gs-l2':2,'gs-l3':3,'gs-l4':4,'gs-final':5};
+  var cur=m[id]||0;
+  for(var i=0;i<6;i++){var el=document.getElementById('ps'+i);if(el){el.classList.remove('active','done');if(i<cur)el.classList.add('done');else if(i===cur)el.classList.add('active');}}
+  if(id!=='gs-intro')document.getElementById('cwrap').style.display='block';
+}
+function gUnlock(w,dest){
+  gKeys.push(w);gRenderCoins();gGoTo(dest);
+}
+function gRenderCoins(){
+  var d=document.getElementById('cdis');d.innerHTML='';
+  gKeys.forEach(function(k){var c=document.createElement('div');c.className='cn';c.textContent='&#128273; '+k;d.appendChild(c);});
+  var fc=document.getElementById('gfcoins');if(fc){fc.innerHTML='';gKeys.forEach(function(k){var c=document.createElement('div');c.className='cn';c.textContent='&#128273; '+k;fc.appendChild(c);});}
+}
+function gDis(el){el.querySelectorAll('.opt').forEach(function(b){b.setAttribute('disabled','true')});}
+function gqa(btn,ok,fbId,msg,nextId){
+  gDis(btn.parentElement);
+  btn.classList.add(ok?'correct':'wrong');
+  var f=document.getElementById(fbId);f.style.display='block';
+  f.className='fb '+(ok?'ok':'fail');
+  f.innerHTML=(ok?'&#10003; ':'&#10007; ')+(msg||(ok?'¡Correcto!':'Revisa el texto e intenta de nuevo.'));
+  if(ok&&nextId)setTimeout(function(){var n=document.getElementById(nextId);if(n)n.style.display='block';},350);
+}
+function gSelF(n){if(gMatchDone[n])return;gCurF=n;document.querySelectorAll('[id^="gf"]').forEach(function(el){if(!el.classList.contains('matched-ok'))el.classList.remove('selected')});document.getElementById('gf'+n).classList.add('selected');}
+function gSelP(n,name){if(!gCurF)return;var fid=gCurF,ok=(gMatchAns[fid]===name);var fe=document.getElementById('gf'+fid),pe=document.getElementById('gp'+n),fb=document.getElementById('g2-fb');if(ok){fe.classList.remove('selected');fe.classList.add('matched-ok');pe.classList.add('matched-ok');gMatchDone[fid]=true;gMatchOk++;fb.innerHTML='<div class="fb ok">&#10003; ¡Correcto! ('+gMatchOk+'/3)</div>';if(gMatchOk===3)setTimeout(function(){document.getElementById('g2-inf').style.display='block';},350);}else{fe.classList.remove('selected');fb.innerHTML='<div class="fb fail">&#10007; No es ese personaje. Vuelve al texto.</div>';}gCurF=null;}
+function gInitSeq(){var sh=['Los diablillos construyen la iglesia de noche.','Cantuña acepta construir el atrio de la iglesia.','El Diablo no termina la obra y pierde el trato.','Los frailes le dan un plazo muy corto.','Cantuña esconde una piedra del montón.'];gSeqOrder=sh.slice();gRenderSeq();}
+function gRenderSeq(){var c=document.getElementById('gseq');c.innerHTML='';gSeqOrder.forEach(function(txt,i){var d=document.createElement('div');d.className='si';d.innerHTML='<span class="sn">'+(i+1)+'.</span><span class="st">'+txt+'</span><span class="sb"><button class="sbtn" onclick="gMvSeq('+i+',-1)">&#8679;</button><button class="sbtn" onclick="gMvSeq('+i+',1)">&#8681;</button></span>';c.appendChild(d);});}
+function gMvSeq(i,d){var j=i+d;if(j<0||j>=gSeqOrder.length)return;var t=gSeqOrder[i];gSeqOrder[i]=gSeqOrder[j];gSeqOrder[j]=t;gRenderSeq();}
+function gCheckSeq(){var ok=gSeqOrder.every(function(t,i){return t===gSeqAns[i]});var f=document.getElementById('g3-f');f.style.display='block';if(ok){f.className='fb ok';f.innerHTML='&#10003; ¡Orden perfecto!';document.getElementById('gseqbtn').style.display='none';setTimeout(function(){document.getElementById('g3-key').style.display='block';},350);}else{f.className='fb fail';f.innerHTML='&#10007; No es el orden correcto. Vuelve a leer y piensa: ¿qué ocurrió primero?';}}
+function gReset(){
+  gKeys=[];gMatchOk=0;gCurF=null;gMatchDone={1:false,2:false,3:false};
+  document.getElementById('cwrap').style.display='none';
+  document.getElementById('cdis').innerHTML='';
+  ['gf1','gf2','gf3','gp1','gp2','gp3'].forEach(function(id){document.getElementById(id).className='mi';});
+  document.getElementById('g2-fb').innerHTML='';
+  ['g2-inf','g2-finf','g2-key','g1-f1','g1-f2','g1-f3','g1-key','g1-q2','g1-q3','g4-f1','g4-f2','g4-f3','g4-key','g4-q2','g4-q3','g3-f','g3-key'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display='none';});
+  document.querySelectorAll('.opt').forEach(function(b){b.removeAttribute('disabled');b.classList.remove('correct','wrong');});
+  document.getElementById('gseqbtn').style.display='block';
+  gInitSeq();gGoTo('gs-intro');
+}
+window.onload=function(){gInitSeq();gUpdProg('gs-intro');};
+</script>
+<script src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
+</body>
+</html>
