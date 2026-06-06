@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Leyenda de Cantuña — Aventura Educativa</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root{
   --cp:#533A71;--cpd:#3a2850;--cplight:#e8e0f8;
@@ -124,6 +125,81 @@ footer strong{color:var(--cl)}
   .nav-pill{font-size:11px;padding:6px 12px}
   .context-box{flex-direction:column;gap:8px}
 }
+
+/* ── NEÓXIS MISSION SYSTEM ── */
+.wrap{font-family:'Nunito',sans-serif;background:#f7f5ff;border-radius:16px;overflow:hidden}
+.wrap .hero-bar{background:#533A71;padding:1.1rem 1.25rem 1.25rem}
+.wrap .hero-top{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+.wrap .hero-icon{width:38px;height:38px;background:#F0F465;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wrap .hero-icon i{font-size:19px;color:#533A71}
+.wrap .hero-title{font-family:'Fredoka One',cursive;font-size:19px;color:#F0F465;line-height:1.1}
+.wrap .hero-sub{font-size:11px;color:#9CECB5;font-weight:700;letter-spacing:.4px;margin-top:1px}
+.wrap .hero-desc{font-size:12px;color:#d0c8f0;font-weight:500;line-height:1.55;margin-bottom:.9rem}
+.wrap .prog-row{display:flex;align-items:center;gap:9px}
+.wrap .prog-track{flex:1;height:7px;background:rgba(255,255,255,.18);border-radius:4px;overflow:hidden}
+.wrap .prog-fill{height:100%;background:#50C5B7;border-radius:4px;transition:width .5s ease}
+.wrap .prog-lbl{font-size:11px;color:#9CECB5;font-weight:800;white-space:nowrap}
+.wrap .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px;padding:1rem}
+.wrap .mcard{background:#fff;border:1.5px solid #d8d4f0;border-radius:12px;padding:11px 11px 13px;cursor:pointer;transition:all .18s;position:relative}
+.wrap .mcard:hover{background:#f0eeff;border-color:#8184DB;transform:translateY(-2px)}
+.wrap .mcard.active{border-color:#8184DB;background:#eeeeff}
+.wrap .mcard.done{border-color:#50C5B7;background:#e8fef5}
+.wrap .mcard-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:9px}
+.wrap .mcard-num{font-size:10px;font-weight:800;color:#8184DB;letter-spacing:.5px;text-transform:uppercase}
+.wrap .mcard.done .mcard-num{color:#0F6E56}
+.wrap .ring-wrap{position:relative;width:26px;height:26px;flex-shrink:0}
+.wrap .ring-bg{stroke:#e0d8f8;fill:none;stroke-width:2.5}
+.wrap .ring-prog{fill:none;stroke:#ccc;stroke-width:2.5;stroke-linecap:round;stroke-dasharray:69.1;stroke-dashoffset:69.1;transform:rotate(-90deg);transform-origin:13px 13px;transition:stroke-dashoffset .7s ease,stroke .35s}
+.wrap .mcard.done .ring-prog{stroke:#50C5B7;stroke-dashoffset:0}
+.wrap .ring-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb;transition:color .3s}
+.wrap .mcard.done .ring-icon{color:#50C5B7}
+.wrap .mcard-icon{font-size:22px;color:#8184DB;margin-bottom:7px;transition:color .3s}
+.wrap .mcard.done .mcard-icon{color:#50C5B7}
+.wrap .mcard-title{font-family:'Fredoka One',cursive;font-size:13px;color:#1a1035;line-height:1.25;margin-bottom:4px}
+.wrap .mcard-desc{font-size:10px;color:#6a5f88;font-weight:600;line-height:1.45}
+.wrap .mcard-tag{display:inline-block;margin-top:6px;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;background:#eeeeff;color:#5f62b5;letter-spacing:.3px}
+.wrap .mcard.done .mcard-tag{background:#e8fef5;color:#0F6E56}
+.wrap .done-pill{display:none;position:absolute;top:7px;right:7px;background:#50C5B7;color:#04342C;font-size:8px;font-weight:800;padding:1px 6px;border-radius:20px;letter-spacing:.3px}
+.wrap .mcard.done .done-pill{display:block}
+.wrap .mission-panel{display:none;margin:0 1rem 1rem;background:#fff;border:1.5px solid #d8d4f0;border-radius:12px;overflow:hidden}
+.wrap .mission-panel.open{display:block}
+.wrap .mp-header{background:#533A71;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.wrap .mp-htitle{font-family:'Fredoka One',cursive;font-size:15px;color:#F0F465}
+.wrap .mp-close{background:rgba(255,255,255,.15);border:none;border-radius:8px;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#F0F465;font-size:14px}
+.wrap .mp-close:hover{background:rgba(255,255,255,.28)}
+.wrap .mp-body{padding:1rem}
+.wrap .mp-frag{font-size:13px;line-height:1.75;color:#1a1035;border-left:3px solid #8184DB;padding:9px 11px 9px 13px;background:#f5f4ff;border-radius:0 8px 8px 0;margin-bottom:1rem;font-style:italic}
+.wrap .mp-frag strong{font-style:normal;color:#533A71}
+.wrap .reto-title{font-size:12px;font-weight:800;color:#3a2850;background:#F0F465;padding:5px 12px;border-radius:7px;margin-bottom:.75rem;display:inline-block}
+.wrap .q-text{font-size:13px;font-weight:700;color:#1a1035;margin-bottom:.6rem;line-height:1.5}
+.wrap .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:6px;background:#fff;border:1.5px solid #c8c4e8;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;color:#1a1035;transition:all .15s;font-family:'Nunito',sans-serif}
+.wrap .opt:hover:not([disabled]){background:#eeeeff;border-color:#8184DB}
+.wrap .opt.correct{background:#e8fef5;border-color:#50C5B7;color:#085041}
+.wrap .opt.wrong{background:#fff0f0;border-color:#e05050;color:#6a0000}
+.wrap .opt[disabled]{cursor:default}
+.wrap .fb{font-size:12px;padding:9px 12px;border-radius:9px;margin:.5rem 0;line-height:1.6;font-weight:600}
+.wrap .fb.ok{background:#e8fef5;color:#085041;border:1.5px solid #50C5B7}
+.wrap .fb.fail{background:#fff0f0;color:#6a0000;border:1.5px solid #e05050}
+.wrap .key-box{background:#533A71;color:#F0F465;font-family:'Fredoka One',cursive;font-size:20px;letter-spacing:5px;text-align:center;padding:12px;border-radius:10px;margin:.75rem 0}
+.wrap .btn-done{background:#533A71;color:#F0F465;border:none;padding:10px 20px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;width:100%;margin-top:.5rem;font-family:'Nunito',sans-serif}
+.wrap .btn-done:hover{background:#3a2850}
+.wrap .seq-item{padding:9px 12px;border-radius:9px;border:1.5px solid #c8c4e8;font-size:12px;font-weight:600;margin-bottom:5px;background:#fff;color:#1a1035;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.wrap .seq-num{font-weight:800;color:#8184DB;min-width:18px;font-size:13px}
+.wrap .seq-txt{flex:1;font-size:12px;line-height:1.45;color:#1a1035}
+.wrap .seq-btns{display:flex;gap:3px;flex-shrink:0}
+.wrap .sbtn{background:#eeeeff;border:1.5px solid #b0b2f0;border-radius:5px;padding:3px 7px;cursor:pointer;font-size:11px;font-weight:800;color:#3a2850;font-family:'Nunito',sans-serif}
+.wrap .sbtn:hover{background:#8184DB;color:#fff;border-color:#8184DB}
+.wrap .btn-check{background:#8184DB;color:#fff;border:none;padding:10px 20px;border-radius:9px;font-size:13px;font-weight:800;cursor:pointer;width:100%;margin-top:.5rem;font-family:'Nunito',sans-serif}
+.wrap .btn-check:hover{background:#5f62b5}
+.wrap .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.5rem}
+.wrap .match-lbl{font-size:10px;font-weight:800;color:#533A71;text-align:center;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.wrap .mi{padding:8px 9px;border-radius:9px;border:1.5px solid #c8c4e8;font-size:11px;font-weight:600;text-align:center;background:#fff;cursor:pointer;color:#1a1035;transition:all .15s;line-height:1.35;margin-bottom:5px;font-family:'Nunito',sans-serif}
+.wrap .mi:hover{background:#eeeeff;border-color:#8184DB}
+.wrap .mi.sel{background:#8184DB;border-color:#5f62b5;color:#fff}
+.wrap .mi.ok{background:#e8fef5;border-color:#50C5B7;color:#085041;cursor:default}
+.wrap .mi.fail{background:#fff0f0;border-color:#e05050;color:#6a0000}
+.wrap .hint-box{font-size:11px;color:#533A71;background:#f0eeff;border-left:3px solid #8184DB;padding:7px 10px;border-radius:0 7px 7px 0;margin:.5rem 0;font-weight:600;line-height:1.5}
+.wrap .footer-hint{padding:.75rem 1rem;text-align:center;font-size:11px;color:#7a6e9a;font-weight:700;background:#f0eeff;border-top:1px solid #e0d8f0}
 </style>
 </head>
 <body>
@@ -178,6 +254,211 @@ footer strong{color:var(--cl)}
         </a>
       </div>
     </div>
+
+    <div class="wrap" style="margin-top:2rem">
+      <div class="hero-bar">
+        <div class="hero-top">
+          <div class="hero-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+          <div>
+            <div class="hero-title">Briefing del Agente NEÓXIS</div>
+            <div class="hero-sub">4 misiones — La Leyenda de Cantuña · 4to EGB</div>
+          </div>
+        </div>
+        <p class="hero-desc">Para rescatar el alma de Cantuña completa las 4 misiones. Haz clic en cada tarjeta para abrir la actividad y marcarla como completada.</p>
+        <div class="prog-row">
+          <div class="prog-track"><div class="prog-fill" id="pf" style="width:0%"></div></div>
+          <div class="prog-lbl" id="pl">0 / 4</div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="mcard" id="mc1" onclick="openMission(1)" role="button" tabindex="0">
+          <div class="done-pill">LISTA</div>
+          <div class="mcard-top">
+            <div class="mcard-num">Misión 01</div>
+            <div class="ring-wrap"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle class="ring-bg" cx="13" cy="13" r="11"/><circle class="ring-prog" id="rp1" cx="13" cy="13" r="11"/></svg><div class="ring-icon" id="ri1"><i class="ti ti-users" style="font-size:11px"></i></div></div>
+          </div>
+          <div class="mcard-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+          <div class="mcard-title">Identificar personajes</div>
+          <div class="mcard-desc">Principales y secundarios de la leyenda</div>
+          <div class="mcard-tag">Personajes</div>
+        </div>
+        <div class="mcard" id="mc2" onclick="openMission(2)" role="button" tabindex="0">
+          <div class="done-pill">LISTA</div>
+          <div class="mcard-top">
+            <div class="mcard-num">Misión 02</div>
+            <div class="ring-wrap"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle class="ring-bg" cx="13" cy="13" r="11"/><circle class="ring-prog" id="rp2" cx="13" cy="13" r="11"/></svg><div class="ring-icon" id="ri2"><i class="ti ti-sort-ascending" style="font-size:11px"></i></div></div>
+          </div>
+          <div class="mcard-icon"><i class="ti ti-sort-ascending" aria-hidden="true"></i></div>
+          <div class="mcard-title">Ordenar 9 episodios</div>
+          <div class="mcard-desc">Cronología de la leyenda</div>
+          <div class="mcard-tag">Secuencia</div>
+        </div>
+        <div class="mcard" id="mc3" onclick="openMission(3)" role="button" tabindex="0">
+          <div class="done-pill">LISTA</div>
+          <div class="mcard-top">
+            <div class="mcard-num">Misión 03</div>
+            <div class="ring-wrap"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle class="ring-bg" cx="13" cy="13" r="11"/><circle class="ring-prog" id="rp3" cx="13" cy="13" r="11"/></svg><div class="ring-icon" id="ri3"><i class="ti ti-bulb" style="font-size:11px"></i></div></div>
+          </div>
+          <div class="mcard-icon"><i class="ti ti-sparkles" aria-hidden="true"></i></div>
+          <div class="mcard-title">Descubrir la moraleja</div>
+          <div class="mcard-desc">Valores implícitos de la historia</div>
+          <div class="mcard-tag">Reflexión</div>
+        </div>
+        <div class="mcard" id="mc4" onclick="openMission(4)" role="button" tabindex="0">
+          <div class="done-pill">LISTA</div>
+          <div class="mcard-top">
+            <div class="mcard-num">Misión 04</div>
+            <div class="ring-wrap"><svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle class="ring-bg" cx="13" cy="13" r="11"/><circle class="ring-prog" id="rp4" cx="13" cy="13" r="11"/></svg><div class="ring-icon" id="ri4"><i class="ti ti-lock-open" style="font-size:11px"></i></div></div>
+          </div>
+          <div class="mcard-icon"><i class="ti ti-building-arch" aria-hidden="true"></i></div>
+          <div class="mcard-title">Rescatar a Cantuña</div>
+          <div class="mcard-desc">Escape Room final: salva su alma</div>
+          <div class="mcard-tag">Escape Room</div>
+        </div>
+      </div>
+
+      <!-- PANEL MISIÓN 1 -->
+      <div class="mission-panel" id="mp1">
+        <div class="mp-header">
+          <div class="mp-htitle"><i class="ti ti-users" aria-hidden="true" style="margin-right:6px"></i>Misión 01 — Identificar personajes</div>
+          <button class="mp-close" onclick="closePanel(1)" aria-label="Cerrar misión"><i class="ti ti-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="mp-body">
+          <div class="mp-frag">En la ciudad de Quito vivía un joven constructor indígena llamado <strong>Cantuña</strong>. Era muy trabajador y hábil con las piedras. Los <strong>frailes franciscanos</strong> le pidieron construir el atrio de la iglesia. Desesperado por no poder terminar, Cantuña hizo un pacto con el <strong>Diablo</strong>, quien vino acompañado de sus pequeños <strong>diablillos</strong> para construir la iglesia en una sola noche.</div>
+          <div class="reto-title"><i class="ti ti-puzzle" aria-hidden="true" style="margin-right:4px"></i>Reto — Clasifica a cada personaje</div>
+          <div class="hint-box">Recuerda: el personaje principal es el más importante. El antagonista se opone al protagonista. Los secundarios tienen roles de apoyo.</div>
+          <div id="m1-content">
+            <div id="m1-q1">
+              <p class="q-text">1. ¿Quién es el PROTAGONISTA de la leyenda?</p>
+              <button class="opt" onclick="m1a(this,true,'m1-q1','m1-f1','m1-q2')">a) Cantuña — el joven constructor indígena</button>
+              <button class="opt" onclick="m1a(this,false,'m1-q1','m1-f1',null)">b) El Diablo — el ser que hace el pacto</button>
+              <button class="opt" onclick="m1a(this,false,'m1-q1','m1-f1',null)">c) Los frailes franciscanos</button>
+            </div>
+            <div id="m1-f1" style="display:none"></div>
+            <div id="m1-q2" style="display:none;margin-top:10px">
+              <p class="q-text">2. ¿Quién es el ANTAGONISTA de la leyenda?</p>
+              <button class="opt" onclick="m1a(this,false,'m1-q2','m1-f2',null)">a) Cantuña</button>
+              <button class="opt" onclick="m1a(this,true,'m1-q2','m1-f2','m1-q3')">b) El Diablo — quiere quedarse con el alma de Cantuña</button>
+              <button class="opt" onclick="m1a(this,false,'m1-q2','m1-f2',null)">c) Los diablillos constructores</button>
+            </div>
+            <div id="m1-f2" style="display:none"></div>
+            <div id="m1-q3" style="display:none;margin-top:10px">
+              <p class="q-text">3. ¿Cuál de estos es un personaje SECUNDARIO?</p>
+              <button class="opt" onclick="m1a(this,false,'m1-q3','m1-f3',null)">a) Cantuña</button>
+              <button class="opt" onclick="m1a(this,false,'m1-q3','m1-f3',null)">b) El Diablo</button>
+              <button class="opt" onclick="m1a(this,true,'m1-q3','m1-f3','m1-key')">c) Los frailes franciscanos — piden la obra pero no son el centro</button>
+            </div>
+            <div id="m1-f3" style="display:none"></div>
+            <div id="m1-key" style="display:none">
+              <div class="key-box"><i class="ti ti-key" aria-hidden="true" style="margin-right:8px"></i>CANTUÑA</div>
+              <div class="fb ok"><i class="ti ti-check" aria-hidden="true" style="margin-right:4px"></i><strong>¡Llave obtenida!</strong> Identificaste correctamente a los 3 tipos de personajes de la leyenda.</div>
+              <button class="btn-done" onclick="completeMission(1)"><i class="ti ti-circle-check" aria-hidden="true" style="margin-right:6px"></i>Misión 1 completada — cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL MISIÓN 2 -->
+      <div class="mission-panel" id="mp2">
+        <div class="mp-header">
+          <div class="mp-htitle"><i class="ti ti-sort-ascending" aria-hidden="true" style="margin-right:6px"></i>Misión 02 — Ordenar los 9 episodios</div>
+          <button class="mp-close" onclick="closePanel(2)" aria-label="Cerrar misión"><i class="ti ti-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="mp-body">
+          <div class="mp-frag">La leyenda de Cantuña tiene <strong>9 episodios</strong> en orden cronológico. LEXUS los desordenó para que Cantuña no pueda ser rescatado. <strong>Usa las flechas</strong> para ordenarlos del 1 al 9.</div>
+          <div class="reto-title"><i class="ti ti-list-numbers" aria-hidden="true" style="margin-right:4px"></i>Reto — Ordena los 9 episodios</div>
+          <div id="seq-container"></div>
+          <button class="btn-check" id="seq-btn" onclick="checkSeq()"><i class="ti ti-check" aria-hidden="true" style="margin-right:6px"></i>Verificar orden</button>
+          <div id="m2-fb" style="display:none"></div>
+          <div id="m2-key" style="display:none">
+            <div class="key-box"><i class="ti ti-key" aria-hidden="true" style="margin-right:8px"></i>ASTUCIA</div>
+            <div class="fb ok"><i class="ti ti-check" aria-hidden="true" style="margin-right:4px"></i><strong>¡Llave obtenida!</strong> Ordenaste perfectamente los 9 episodios de la leyenda.</div>
+            <button class="btn-done" onclick="completeMission(2)"><i class="ti ti-circle-check" aria-hidden="true" style="margin-right:6px"></i>Misión 2 completada — cerrar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL MISIÓN 3 -->
+      <div class="mission-panel" id="mp3">
+        <div class="mp-header">
+          <div class="mp-htitle"><i class="ti ti-sparkles" aria-hidden="true" style="margin-right:6px"></i>Misión 03 — Descubrir la moraleja</div>
+          <button class="mp-close" onclick="closePanel(3)" aria-label="Cerrar misión"><i class="ti ti-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="mp-body">
+          <div class="mp-frag">Al amanecer, el gallo cantó. Los diablillos vieron que faltaba UNA piedra. El Diablo rugió furioso. Cantuña sonrió y mostró la piedra escondida: <strong>"¡La obra no está terminada!"</strong> El Diablo, derrotado por la astucia del joven, desapareció. <strong>La inteligencia había vencido a la trampa.</strong></div>
+          <div class="reto-title"><i class="ti ti-bulb" aria-hidden="true" style="margin-right:4px"></i>Reto — Descubre los valores ocultos</div>
+          <div id="m3-q1">
+            <p class="q-text">1. ¿Cuál es la moraleja principal de la leyenda?</p>
+            <button class="opt" onclick="m3a(this,false,'m3-q1','m3-f1',null)">a) Siempre cumple tus promesas, aunque sean difíciles</button>
+            <button class="opt" onclick="m3a(this,true,'m3-q1','m3-f1','m3-q2')">b) La inteligencia y la astucia pueden vencer a quien quiere engañarnos</button>
+            <button class="opt" onclick="m3a(this,false,'m3-q1','m3-f1',null)">c) Nunca pidas ayuda cuando tengas problemas</button>
+          </div>
+          <div id="m3-f1" style="display:none"></div>
+          <div id="m3-q2" style="display:none;margin-top:10px">
+            <p class="q-text">2. ¿Qué valor demuestra Cantuña al esconder la piedra?</p>
+            <button class="opt" onclick="m3a(this,false,'m3-q2','m3-f2',null)">a) Deshonestidad — hizo trampa al Diablo</button>
+            <button class="opt" onclick="m3a(this,true,'m3-q2','m3-f2','m3-q3')">b) Ingenio — usó su inteligencia para encontrar una salida justa</button>
+            <button class="opt" onclick="m3a(this,false,'m3-q2','m3-f2',null)">c) Cobardía — tuvo miedo y huyó</button>
+          </div>
+          <div id="m3-f2" style="display:none"></div>
+          <div id="m3-q3" style="display:none;margin-top:10px">
+            <p class="q-text">3. ¿Con qué valor del pueblo ecuatoriano se relaciona la leyenda?</p>
+            <button class="opt" onclick="m3a(this,false,'m3-q3','m3-f3',null)">a) La fuerza física para superar obstáculos</button>
+            <button class="opt" onclick="m3a(this,false,'m3-q3','m3-f3',null)">b) La riqueza como solución a los problemas</button>
+            <button class="opt" onclick="m3a(this,true,'m3-q3','m3-f3','m3-key')">c) La valentía y el ingenio del pueblo indígena frente a la adversidad</button>
+          </div>
+          <div id="m3-f3" style="display:none"></div>
+          <div id="m3-key" style="display:none">
+            <div class="key-box"><i class="ti ti-key" aria-hidden="true" style="margin-right:8px"></i>VALORES</div>
+            <div class="fb ok"><i class="ti ti-check" aria-hidden="true" style="margin-right:4px"></i><strong>¡Llave obtenida!</strong> Descubriste la moraleja y los valores culturales de la leyenda de Cantuña.</div>
+            <button class="btn-done" onclick="completeMission(3)"><i class="ti ti-circle-check" aria-hidden="true" style="margin-right:6px"></i>Misión 3 completada — cerrar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL MISIÓN 4 -->
+      <div class="mission-panel" id="mp4">
+        <div class="mp-header">
+          <div class="mp-htitle"><i class="ti ti-building-arch" aria-hidden="true" style="margin-right:6px"></i>Misión 04 — Rescatar a Cantuña</div>
+          <button class="mp-close" onclick="closePanel(4)" aria-label="Cerrar misión"><i class="ti ti-x" aria-hidden="true"></i></button>
+        </div>
+        <div class="mp-body">
+          <div class="mp-frag">Esta es la misión final. El sistema LEXUS tiene encerrado el alma de Cantuña detrás de un candado de 4 dígitos. Debes conectar cada <strong>frase</strong> con el <strong>personaje correcto</strong> que la dijo y luego responder la pregunta final para abrir el candado.</div>
+          <div class="reto-title"><i class="ti ti-messages" aria-hidden="true" style="margin-right:4px"></i>Reto — ¿Quién dijo qué?</div>
+          <div class="hint-box">Toca una frase y luego toca el personaje que la dijo. Necesitas 3/3 para abrir el candado.</div>
+          <div class="match-grid">
+            <div>
+              <div class="match-lbl">Frases</div>
+              <div class="mi" id="mf1" onclick="selF(1)">"Debes terminar antes del amanecer o serás castigado"</div>
+              <div class="mi" id="mf2" onclick="selF(2)">"Te daré mis diablillos a cambio de tu alma"</div>
+              <div class="mi" id="mf3" onclick="selF(3)">"¡La obra no está terminada!"</div>
+            </div>
+            <div>
+              <div class="match-lbl">Personaje</div>
+              <div class="mi" id="mp_1" onclick="selP(1,'Los frailes')">Los frailes</div>
+              <div class="mi" id="mp_2" onclick="selP(2,'El Diablo')">El Diablo</div>
+              <div class="mi" id="mp_3" onclick="selP(3,'Cantuña')">Cantuña</div>
+            </div>
+          </div>
+          <div id="m4-match-fb"></div>
+          <div id="m4-q-final" style="display:none;margin-top:10px">
+            <p class="q-text">Pregunta final: ¿Por qué el Diablo no pudo quedarse con el alma de Cantuña?</p>
+            <button class="opt" onclick="m4fin(this,false)">a) Porque Cantuña oró toda la noche</button>
+            <button class="opt" onclick="m4fin(this,true)">b) Porque Cantuña escondió una piedra y la obra nunca quedó terminada</button>
+            <button class="opt" onclick="m4fin(this,false)">c) Porque los frailes llegaron a ayudarlo</button>
+          </div>
+          <div id="m4-ffb" style="display:none"></div>
+          <div id="m4-key" style="display:none">
+            <div class="key-box"><i class="ti ti-lock-open" aria-hidden="true" style="margin-right:8px"></i>QUITO</div>
+            <div class="fb ok"><i class="ti ti-check" aria-hidden="true" style="margin-right:4px"></i><strong>¡Alma rescatada!</strong> Conectaste todas las frases y respondiste el reto final. ¡Cantuña está a salvo!</div>
+            <button class="btn-done" onclick="completeMission(4)"><i class="ti ti-trophy" aria-hidden="true" style="margin-right:6px"></i>¡Misión final completada!</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-hint" id="fhint">Haz clic en una tarjeta para comenzar la misión</div>
+    </div><!-- /.wrap -->
 
     <!-- Progress tracker -->
     <div class="progress-tracker">
@@ -709,6 +990,109 @@ function gReset(){
   document.getElementById('gseqbtn').style.display='block';
   gInitSeq();gGoTo('gs-intro');
 }
+// ── NEÓXIS MISSION SYSTEM ──
+var done={1:false,2:false,3:false,4:false};
+var openPanel=0;
+var seqAns=['Cantuña es contratado para construir el atrio.','Los frailes le imponen un plazo imposible.','Cantuña trabaja pero no puede terminar solo.','Desesperado, Cantuña hace un pacto con el Diablo.','Los diablillos construyen la iglesia en una noche.','Cantuña esconde una piedra del montón.','Al amanecer, el gallo canta y el Diablo ve que falta una piedra.','Cantuña muestra la piedra: el trato no fue cumplido.','El Diablo desaparece derrotado y Cantuña queda libre.'];
+var seqOrder=null;
+var mAns={1:'Los frailes',2:'El Diablo',3:'Cantuña'};
+var mDone={1:false,2:false,3:false};
+var mOk=0;
+var curF=null;
+
+function openMission(n){
+  if(openPanel&&openPanel!==n) closePanel(openPanel);
+  var p=document.getElementById('mp'+n);
+  p.classList.toggle('open');
+  openPanel=p.classList.contains('open')?n:0;
+  document.getElementById('mc'+n).classList.toggle('active',p.classList.contains('open'));
+  if(n===2&&seqOrder===null) initSeq();
+}
+function closePanel(n){
+  document.getElementById('mp'+n).classList.remove('open');
+  document.getElementById('mc'+n).classList.remove('active');
+  if(openPanel===n) openPanel=0;
+}
+function completeMission(n){
+  done[n]=true;
+  var rp=document.getElementById('rp'+n);
+  rp.style.stroke='#50C5B7';rp.style.strokeDashoffset='0';
+  document.getElementById('mc'+n).classList.add('done');
+  document.getElementById('mc'+n).classList.remove('active');
+  closePanel(n);
+  var c=Object.values(done).filter(Boolean).length;
+  document.getElementById('pf').style.width=Math.round(c/4*100)+'%';
+  document.getElementById('pl').textContent=c+' / 4';
+  var msgs=['Haz clic en una tarjeta para comenzar la misión','¡Primera misión lista! Sigue adelante, agente.','¡Vas a la mitad! El sistema NEÓXIS confía en ti.','¡Solo falta una misión! Rescata a Cantuña.','¡MISIÓN CUMPLIDA! El alma de Cantuña está a salvo. ¡Eres el Guardián de la Memoria!'];
+  document.getElementById('fhint').textContent=msgs[c];
+}
+function disOpts(parent){parent.querySelectorAll('.opt').forEach(function(b){b.disabled=true});}
+function qa(btn,ok,fid,msg,nextId){
+  disOpts(btn.parentElement);
+  btn.classList.add(ok?'correct':'wrong');
+  var f=document.getElementById(fid);f.style.display='block';
+  f.className='fb '+(ok?'ok':'fail');
+  f.innerHTML=(ok?'<i class="ti ti-check" aria-hidden="true"></i> ':'<i class="ti ti-x" aria-hidden="true"></i> ')+(msg||(ok?'¡Correcto!':'Vuelve a leer el texto e intenta de nuevo.'));
+  if(ok&&nextId) setTimeout(function(){var ne=document.getElementById(nextId);if(ne)ne.style.display='block';},350);
+}
+function m1a(btn,ok,qid,fid,nextId){qa(btn,ok,fid,ok?'¡Correcto!':'Vuelve a leer el texto. Piensa en quién es el centro de la historia.',nextId);}
+function m3a(btn,ok,qid,fid,nextId){qa(btn,ok,fid,ok?'¡Exacto! Muy buen análisis.':'Relee el texto e intenta de nuevo.',nextId);}
+function initSeq(){
+  var sh=['Cantuña esconde una piedra del montón.','Cantuña es contratado para construir el atrio.','El Diablo desaparece derrotado y Cantuña queda libre.','Los frailes le imponen un plazo imposible.','Los diablillos construyen la iglesia en una noche.','Al amanecer, el gallo canta y el Diablo ve que falta una piedra.','Desesperado, Cantuña hace un pacto con el Diablo.','Cantuña trabaja pero no puede terminar solo.','Cantuña muestra la piedra: el trato no fue cumplido.'];
+  seqOrder=sh.slice();renderSeq();
+}
+function renderSeq(){
+  var c=document.getElementById('seq-container');c.innerHTML='';
+  seqOrder.forEach(function(txt,i){
+    var d=document.createElement('div');d.className='seq-item';
+    d.innerHTML='<span class="seq-num">'+(i+1)+'.</span><span class="seq-txt">'+txt+'</span><span class="seq-btns"><button class="sbtn" onclick="mvSeq('+i+',-1)">&#8679;</button><button class="sbtn" onclick="mvSeq('+i+',1)">&#8681;</button></span>';
+    c.appendChild(d);
+  });
+}
+function mvSeq(i,d){var j=i+d;if(j<0||j>=seqOrder.length)return;var t=seqOrder[i];seqOrder[i]=seqOrder[j];seqOrder[j]=t;renderSeq();}
+function checkSeq(){
+  var ok=seqOrder.every(function(t,i){return t===seqAns[i]});
+  var fb=document.getElementById('m2-fb');fb.style.display='block';
+  if(ok){fb.className='fb ok';fb.innerHTML='<i class="ti ti-check" aria-hidden="true"></i> ¡Orden perfecto! Conoces la leyenda de principio a fin.';document.getElementById('seq-btn').style.display='none';setTimeout(function(){document.getElementById('m2-key').style.display='block';},350);}
+  else{fb.className='fb fail';fb.innerHTML='<i class="ti ti-x" aria-hidden="true"></i> El orden no es correcto. Piensa: ¿qué ocurrió primero? ¿Cantuña construyó antes o después del pacto?';}
+}
+function selF(n){
+  if(mDone[n])return;
+  curF=n;
+  document.querySelectorAll('[id^="mf"]').forEach(function(el){if(!el.classList.contains('ok'))el.classList.remove('sel');});
+  document.getElementById('mf'+n).classList.add('sel');
+}
+function selP(n,name){
+  if(!curF)return;
+  var fid=curF;
+  var ok=(mAns[fid]===name);
+  var fe=document.getElementById('mf'+fid);
+  var pe=document.getElementById('mp_'+n);
+  var fb=document.getElementById('m4-match-fb');
+  if(ok){
+    fe.classList.remove('sel');fe.classList.add('ok');
+    pe.classList.add('ok');
+    mDone[fid]=true;mOk++;
+    fb.innerHTML='<div class="fb ok" style="margin-top:6px"><i class="ti ti-check" aria-hidden="true"></i> ¡Correcto! ('+mOk+'/3 conexiones)</div>';
+    if(mOk===3) setTimeout(function(){document.getElementById('m4-q-final').style.display='block';},350);
+  } else {
+    fe.classList.remove('sel');
+    fb.innerHTML='<div class="fb fail" style="margin-top:6px"><i class="ti ti-x" aria-hidden="true"></i> No es ese personaje. Vuelve al texto.</div>';
+  }
+  curF=null;
+}
+function m4fin(btn,ok){
+  disOpts(btn.parentElement);
+  btn.classList.add(ok?'correct':'wrong');
+  var fb=document.getElementById('m4-ffb');fb.style.display='block';
+  fb.className='fb '+(ok?'ok':'fail');
+  fb.innerHTML=ok?'<i class="ti ti-check" aria-hidden="true"></i> ¡Exacto! La piedra escondida fue el plan secreto de Cantuña.':'<i class="ti ti-x" aria-hidden="true"></i> Recuerda: ¿qué hizo Cantuña en secreto durante la noche?';
+  if(ok) setTimeout(function(){document.getElementById('m4-key').style.display='block';},350);
+}
+document.querySelectorAll('.mcard').forEach(function(c){
+  c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}});
+});
+
 window.onload=function(){gInitSeq();gUpdProg('gs-intro');};
 </script>
 <script src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
