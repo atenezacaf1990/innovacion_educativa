@@ -222,42 +222,47 @@ footer strong{color:var(--cl)}
 /* ── Modal de bienvenida ── */
 #welcome-overlay{
   position:fixed;inset:0;z-index:9999;
-  background:rgba(20,10,40,.72);
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(129,132,219,.55) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(80,197,183,.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 60% 85%, rgba(240,244,101,.25) 0%, transparent 50%),
+    linear-gradient(135deg,rgba(58,40,80,.92) 0%,rgba(30,15,60,.95) 100%);
   display:flex;align-items:center;justify-content:center;
   padding:16px;
   animation:overlay-in .3s ease;
 }
 @keyframes overlay-in{from{opacity:0}to{opacity:1}}
 #welcome-modal{
-  background:#fff;border-radius:18px;
-  box-shadow:0 8px 48px rgba(83,58,113,.45);
-  width:100%;max-width:1100px;
+  background:#fff;border-radius:20px;
+  box-shadow:0 24px 80px rgba(20,10,40,.7), 0 0 0 1px rgba(129,132,219,.3);
+  width:100%;max-width:860px;
   display:flex;flex-direction:column;
   overflow:hidden;
-  animation:modal-in .35s cubic-bezier(.22,.68,0,1.2);
+  animation:modal-in .4s cubic-bezier(.22,.68,0,1.2);
 }
-@keyframes modal-in{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes modal-in{from{transform:scale(.88) translateY(24px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
 #welcome-modal-header{
   display:flex;align-items:center;justify-content:space-between;
-  background:var(--cp);color:#fff;
-  padding:12px 18px;
-  font-family:'Fredoka One',cursive;font-size:1.1rem;
+  background:linear-gradient(90deg,var(--cpd) 0%,var(--cb) 100%);
+  color:#fff;padding:14px 20px;
+  font-family:'Fredoka One',cursive;font-size:1.15rem;
+  letter-spacing:.3px;
 }
+#welcome-modal-header span{display:flex;align-items:center;gap:8px}
 #welcome-modal-header button{
-  background:rgba(255,255,255,.18);border:none;color:#fff;
-  width:32px;height:32px;border-radius:50%;cursor:pointer;
-  font-size:1.2rem;display:flex;align-items:center;justify-content:center;
-  transition:background .2s;
+  background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.3);color:#fff;
+  width:34px;height:34px;border-radius:50%;cursor:pointer;
+  font-size:1rem;display:flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .15s;flex-shrink:0;
 }
-#welcome-modal-header button:hover{background:rgba(255,255,255,.35)}
+#welcome-modal-header button:hover{background:rgba(255,255,255,.35);transform:scale(1.1)}
 #welcome-modal-body{
-  position:relative;width:100%;
-  /* relación 1088:720 ≈ 60.7% */
-  padding-bottom:min(66.2%, 720px);
-  height:0;
+  width:100%;height:520px;
+  background:linear-gradient(160deg,#f7f5ff 0%,#eeeeff 100%);
+  display:flex;align-items:center;justify-content:center;
 }
 #welcome-modal-body iframe{
-  position:absolute;inset:0;width:100%;height:100%;border:0;
+  width:100%;height:100%;border:0;display:block;
 }
 </style>
 </head>
