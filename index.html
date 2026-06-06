@@ -200,6 +200,24 @@ footer strong{color:var(--cl)}
 .wrap .mi.fail{background:#fff0f0;border-color:#e05050;color:#6a0000}
 .wrap .hint-box{font-size:11px;color:#533A71;background:#f0eeff;border-left:3px solid #8184DB;padding:7px 10px;border-radius:0 7px 7px 0;margin:.5rem 0;font-weight:600;line-height:1.5}
 .wrap .footer-hint{padding:.75rem 1rem;text-align:center;font-size:11px;color:#7a6e9a;font-weight:700;background:#f0eeff;border-top:1px solid #e0d8f0}
+
+/* ── Personaje parallax ── */
+#parallax-char{
+  position:fixed;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  width:clamp(80px,10vw,140px);
+  z-index:999;
+  pointer-events:none;
+  filter:drop-shadow(0 4px 16px rgba(83,58,113,.35));
+  animation:char-float 3s ease-in-out infinite;
+}
+@keyframes char-float{
+  0%,100%{margin-top:0}
+  50%{margin-top:-12px}
+}
+@media(max-width:480px){#parallax-char{display:none}}
 </style>
 </head>
 <body>
@@ -905,6 +923,12 @@ footer strong{color:var(--cl)}
   </div><!-- .container -->
 </div><!-- .game-section -->
 
+<!-- PERSONAJE PARALLAX -->
+<img id="parallax-char"
+  src="img/WhatsApp_Image_2026-06-06_at_09.37.36-removebg-preview.png"
+  alt="Personaje"
+  aria-hidden="true">
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1095,6 +1119,16 @@ document.querySelectorAll('.mcard').forEach(function(c){
 });
 
 window.onload=function(){gInitSeq();gUpdProg('gs-intro');};
+
+/* ── Parallax character ── */
+(function(){
+  var el=document.getElementById('parallax-char');
+  var baseY=0;
+  window.addEventListener('scroll',function(){
+    var s=window.scrollY;
+    el.style.transform='translateY(calc(-50% + '+Math.round(s*0.18)+'px))';
+  },{passive:true});
+})();
 </script>
 <script src="https://app.lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8"></script>
 </body>
