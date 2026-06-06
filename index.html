@@ -1123,10 +1123,11 @@ window.onload=function(){gInitSeq();gUpdProg('gs-intro');};
 /* ── Parallax character ── */
 (function(){
   var el=document.getElementById('parallax-char');
-  var baseY=0;
   window.addEventListener('scroll',function(){
     var s=window.scrollY;
-    el.style.transform='translateY(calc(-50% + '+Math.round(s*0.18)+'px))';
+    var max=window.innerHeight*0.3;
+    var offset=Math.min(Math.round(s*0.12),max);
+    el.style.transform='translateY(calc(-50% + '+offset+'px))';
   },{passive:true});
 })();
 </script>
