@@ -107,6 +107,35 @@ section{padding:3rem 0}
 .transfer-form{margin:2rem auto 0;max-width:700px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 6px 32px rgba(83,58,113,.15);border:2px solid var(--cplight)}
 .transfer-form iframe{width:100%;display:block;border:0}
 
+/* ── INSIGNIA ── */
+.badge-section{padding:3.5rem 0 4rem;background:linear-gradient(135deg,var(--cpd) 0%,#4a3580 100%);position:relative;overflow:hidden;text-align:center}
+.badge-section::before{content:'';position:absolute;top:-40px;left:0;right:0;height:80px;background:var(--bg);clip-path:ellipse(55% 100% at 50% 0%)}
+.badge-section-inner{position:relative;z-index:1}
+.badge-tag{display:inline-block;background:var(--cl);color:var(--cpd);font-family:'Fredoka One',cursive;font-size:.9rem;padding:5px 18px;border-radius:20px;margin-bottom:12px;letter-spacing:.5px}
+.badge-title{font-family:'Fredoka One',cursive;font-size:clamp(22px,3.5vw,34px);color:#fff;margin-bottom:8px}
+.badge-desc{font-size:14px;color:var(--cm);font-weight:600;margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6}
+.badge-card{display:inline-flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.08);border:2px solid rgba(240,244,101,.3);border-radius:24px;padding:2rem 2.5rem;max-width:360px;margin:0 auto}
+/* Locked */
+.badge-img-wrap{position:relative;width:200px;height:200px;margin-bottom:1.2rem}
+.badge-img{width:200px;height:200px;object-fit:contain;border-radius:16px;display:block;transition:filter .6s,transform .6s}
+.badge-locked .badge-img{filter:grayscale(1) blur(4px) brightness(.55);transform:scale(.95)}
+.badge-lock-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.5rem;transition:opacity .4s}
+.badge-unlocked .badge-lock-icon{opacity:0;pointer-events:none}
+.badge-locked-msg{font-size:13px;color:rgba(255,255,255,.65);font-weight:700;margin-bottom:1rem;line-height:1.5;text-align:center}
+.badge-unlocked .badge-locked-msg{display:none}
+/* Unlocked */
+.badge-unlocked-msg{display:none;font-size:14px;color:var(--cl);font-weight:700;margin-bottom:1rem;text-align:center}
+.badge-unlocked .badge-unlocked-msg{display:block}
+.badge-dl-btn{display:none;align-items:center;gap:8px;background:var(--cl);color:var(--cpd);font-family:'Fredoka One',cursive;font-size:1rem;padding:10px 24px;border-radius:40px;text-decoration:none;border:none;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 16px rgba(240,244,101,.35)}
+.badge-unlocked .badge-dl-btn{display:flex}
+.badge-dl-btn:hover{transform:scale(1.05);box-shadow:0 6px 24px rgba(240,244,101,.5)}
+.badge-manual-btn{margin-top:1.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;padding:7px 18px;border-radius:20px;cursor:pointer;transition:background .2s}
+.badge-manual-btn:hover{background:rgba(255,255,255,.22);color:#fff}
+.badge-unlocked .badge-manual-btn{display:none}
+/* Confetti particles */
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(120px) rotate(720deg);opacity:0}}
+.confetti-p{position:absolute;width:8px;height:8px;border-radius:2px;animation:confetti-fall .8s ease-out forwards;pointer-events:none}
+
 /* ── FOOTER ── */
 footer{background:var(--cpd);padding:2rem 1rem;text-align:center}
 footer p{color:#b8a8d8;font-size:13px;font-weight:600;line-height:1.8}
@@ -1031,6 +1060,29 @@ footer strong{color:var(--cl)}
   </div>
 </section>
 
+<!-- INSIGNIA -->
+<section class="badge-section" id="insignia">
+  <div class="container badge-section-inner">
+    <div class="badge-tag">&#127942; Recompensa</div>
+    <h2 class="badge-title">Tu Insignia de Guardián de la Memoria</h2>
+    <p class="badge-desc">Completa la Misión de Transferencia y envía tu cuento para desbloquear tu insignia digital.</p>
+    <div id="badge-card" class="badge-card badge-locked">
+      <div class="badge-img-wrap">
+        <img class="badge-img" src="img/insignia.png" alt="Insignia Guardián de la Memoria">
+        <div class="badge-lock-icon">&#128274;</div>
+      </div>
+      <p class="badge-locked-msg">&#128274; Insignia bloqueada<br>Envía tu cuento para desbloquearla</p>
+      <p class="badge-unlocked-msg">&#127881; ¡Insignia desbloqueada!<br>Eres un Guardián de la Memoria</p>
+      <a id="badge-dl" class="badge-dl-btn" href="img/insignia.png" download="insignia-guardian-memoria.png">
+        <i class="ti ti-download" aria-hidden="true"></i> Descargar insignia
+      </a>
+    </div>
+    <button class="badge-manual-btn" id="badge-manual-btn" onclick="unlockBadge()">
+      &#10003; Ya envié mi cuento — desbloquear insignia
+    </button>
+  </div>
+</section>
+
 <!-- PERSONAJE PARALLAX -->
 <img id="parallax-char"
   src="img/WhatsApp_Image_2026-06-06_at_09.37.36-removebg-preview.png"
@@ -1242,6 +1294,36 @@ function closeWelcome(){
 document.getElementById('welcome-overlay').addEventListener('click',function(e){
   if(e.target===this) closeWelcome();
 });
+
+/* ── Insignia ── */
+function unlockBadge(){
+  var card=document.getElementById('badge-card');
+  if(card.classList.contains('badge-unlocked')) return;
+  card.classList.remove('badge-locked');
+  card.classList.add('badge-unlocked');
+  // confetti burst
+  var wrap=card.querySelector('.badge-img-wrap');
+  var colors=['#F0F465','#9CECB5','#50C5B7','#8184DB','#ff9f7f'];
+  for(var i=0;i<18;i++){
+    var p=document.createElement('div');
+    p.className='confetti-p';
+    p.style.cssText='left:'+(20+Math.random()*60)+'%;top:0;background:'+colors[i%colors.length]+';animation-delay:'+(Math.random()*.4)+'s;animation-duration:'+(0.6+Math.random()*.5)+'s';
+    wrap.appendChild(p);
+    setTimeout((function(el){return function(){el.remove();};})(p),1200);
+  }
+  // scroll suave hacia la insignia
+  setTimeout(function(){document.getElementById('insignia').scrollIntoView({behavior:'smooth',block:'center'});},200);
+}
+// Detecta envío del formulario (el iframe recarga al confirmar)
+(function(){
+  var formIframe=document.querySelector('.transfer-form iframe');
+  var loads=0;
+  if(!formIframe) return;
+  formIframe.addEventListener('load',function(){
+    loads++;
+    if(loads>=2) unlockBadge();
+  });
+})();
 
 /* ── Parallax character ── */
 (function(){
